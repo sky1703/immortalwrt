@@ -17,6 +17,11 @@
 		led-upgrade = &led_sys;
 	};
 
+
+        chosen {
+                bootargs = "console=ttyS0,115200";
+        };
+
 	leds {
 		compatible = "gpio-leds";
 
@@ -130,25 +135,22 @@
 			partition@0 {
 				label = "u-boot";
 				reg = <0x0 0x30000>;
-				read-only;
 			};
 
 			partition@30000 {
 				label = "u-boot-env";
 				reg = <0x30000 0x10000>;
-				read-only;
 			};
 
 			factory: partition@40000 {
 				label = "factory";
 				reg = <0x40000 0x10000>;
-				read-only;
 			};
 
 			partition@50000 {
 				compatible = "denx,uimage";
 				label = "firmware";
-				reg = <0x50000 0x7b0000>;
+				reg = <0x50000 0xfb0000>;
 			};
 		};
 	};
